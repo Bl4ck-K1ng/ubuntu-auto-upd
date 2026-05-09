@@ -61,4 +61,13 @@ echo ""
 echo "Готово!"
 echo "Проверить cron:      crontab -l"
 echo "Посмотреть логи:    tail -n 50 $LOGFILE"
+echo "Удалить задачу:     crontab -l | grep -v '$CRON_COMMENT' | crontab -"else
+    (crontab -l 2>/dev/null || true; echo "$CRON_JOB") | crontab -
+    echo "✓ Задача в cron УСПЕШНО добавлена (6:00 и 18:00 каждый день)"
+fi
+
+echo ""
+echo "Готово!"
+echo "Проверить cron:      crontab -l"
+echo "Посмотреть логи:    tail -n 50 $LOGFILE"
 echo "Удалить задачу:     crontab -l | grep -v '$CRON_COMMENT' | crontab -"echo "Удалить задачу:   sudo crontab -l | grep -v '$CRON_COMMENT' | sudo crontab -"
